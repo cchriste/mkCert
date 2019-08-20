@@ -8,7 +8,9 @@ In order to create your cert, first run createRootCA.sh which we created first.
 > enter cert info (the only necessary part is 'Common name' which must be your full url, which could simply be 'localhost'). 
 
 Next, run createselfsignedcertificate.sh to create the self signed cert using the previously entered 'Common name' as the SAN and CN.
-Note you must have sudo access for this.
+Note you must have sudo access for this (2019.02.27 - actually, quite the opposite now, so I dumped sudo... https://github.com/openssl/openssl/issues/3363)
+
+
 
 ---
 
@@ -17,6 +19,8 @@ In Chrome:
  - open Settings -> Advanced -> Manage certificates
  - Authorities -> Import
  - select rootCA.pem file
+
+In the visus/anaconda, just cut and paste it into /usr/local/anaconda2/ssl/cacert.pem.
 
 Finally, utilize the server.key and server.crt in '.' by specifying them in the <VirtualHost... section of your website.conf.
 
